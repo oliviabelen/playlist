@@ -293,7 +293,7 @@
     <header>
       <div class="poster-strip" aria-hidden="true"></div>
       <div class="head-inner">
-        <span class="kicker">notes</span>
+        <span class="kicker">✿</span>
         <h1>°❀⋆.ೃ࿔*:･</h1>
         <p class="sub">
           i picked these songs for you :)
@@ -313,6 +313,7 @@
       tell me what you thought
       <span class="tiny">tú estás dormida  y yo te abrazo y siento que respiras   sueño con tu sonrisa  te beso muy despacio en las mejillas
 </span>
+      <span class="tiny">no hago otra cosa que pensar en ti</span>
     </footer>
   </div>
 
@@ -321,7 +322,7 @@
     // For Spotify embeds: use https://open.spotify.com/embed/track/TRACK_ID
     // If you don’t want embeds yet, leave embed: "" and it won’t show.
     const songs = [
-      { title: "Song Title 1", artist: "Artist 1", why: "Why I chose this one...", quote: "A quote I love...", tags: ["late-night", "warm", "vinyl"], embed: "" },
+      { title: "anna(go to him)", artist: "the beatles", why: "this is the song i listened to during my first genuine heartbreak. i think its so beautiful though. i also lowk think abt you now when i have to face the fact that you might go to someone else", quote: "i've been searching for a girl that loves me like i love you", tags: ["guitar", "warm", "vinyl"], embed: "" },
       { title: "Song Title 2", artist: "Artist 2", why: "Why I chose this one...", quote: "A quote I love...", tags: ["rose & smoke", "soft"], embed: "" },
       { title: "Song Title 3", artist: "Artist 3", why: "Why I chose this one...", quote: "A quote I love...", tags: ["guitar", "slow burn"], embed: "" },
 
@@ -374,14 +375,14 @@
         <section class="card">
           <div class="card-inner">
             <div class="topline">
-              <span class="trackno">Track ${idx + 1}</span>
+              <span class="trackno"> ${idx + 1}</span>
               <div class="titleblock">
                 <h2>${escapeHtml(s.title)} <span style="opacity:.8">—</span> ${escapeHtml(s.artist)}</h2>
                 <p class="artist"> </p>
               </div>
             </div>
 
-            <p class="why"><strong>Why I picked it:</strong> ${escapeHtml(s.why)}</p>
+            <p class="why"><strong>why:</strong> ${escapeHtml(s.why)}</p>
             ${quote}
             <div class="tags">${tags}</div>
           </div>
