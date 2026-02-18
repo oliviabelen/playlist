@@ -1,1 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>27 Songs (Liner Notes)</title>
+  <meta name="description" content="A curated Spotify playlist with notes, quotes, and aesthetics." />
+  <style>
+    /* ====== AESTHETIC: burgundy/sepia/halftone poster ====== */
+    :root{
+      --ink: #12080b;
+      --wine: #4b0f18;
+      --crimson: #7a1623;
+      --rose: #a23a48;
+      --parchment: #d9c5a6;
+      --paper: #cdb38e;
+      --muted: rgba(217,197,166,.78);
+      --border: rgba(217,197,166,.22);
+      --glass: rgba(18,8,11,.72);
+      --shadow: rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      color: var(--parchment);
+      background: var(--ink);
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      letter-spacing: .2px;
+      overflow-x: hidden;
+    }
+
+    /* Background layers: swirls + halftone + vignette */
+    .bg{
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(122,22,35,.35), transparent 60%),
+        radial-gradient(1100px 700px at 85% 25%, rgba(162,58,72,.22), transparent 55%),
+        linear-gradient(180deg, rgba(18,8,11,.85), rgba(18,8,11,.96));
+    }
+
+    .bg-image{
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      background-image: url("assets/bg-swirls.jpg"); /* swap to your swirly image */
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.95) contrast(1.05) brightness(0.68);
+      transform: scale(1.02);
+    }
+
+    /* Halftone/grain overlay */
+    .grain{
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: .28;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(217,197,166,.25) 0 1px, transparent 2px) 0 0/8px 8px,
+        radial-gradient(circle at 70% 60%, rgba(217,197,166,.22) 0 1px, transparent 2px) 0 0/9px 9px;
+      mix-blend-mode: overlay;
+    }
+
+    .vignette{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 30%, transparent 35%, rgba(0,0,0,.58) 78%);
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 26px 18px 80px;
+    }
+
+    header{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(75,15,24,.75), rgba(18,8,11,.70));
+      border-radius: var(--radius);
+      box-shadow: 0 16px 60px var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header “poster strip” */
+    .poster-strip{
+      height: 92px;
+      background-image: url("assets/bg-guitar.jpg"); /* swap to your guitar image */
+      background-size: cover;
+      background-position: center;
+      filter: contrast(1.1) brightness(.75) saturate(.95);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .head-inner{
+      padding: 18px 18px 20px;
+    }
+
+    .kicker{
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(217,197,166,.85);
+      background: rgba(18,8,11,.45);
+    }
+
+    h1{
+      margin: 10px 0 6px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.05;
+      color: var(--parchment);
+      text-shadow: 0 2px 0 rgba(0,0,0,.25);
+    }
+
+    .sub{
+      margin: 0;
+      max-width: 72ch;
+      color: rgba(217,197,166,.82);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .meta-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .chip{
+      border: 1px solid var(--border);
+      background: rgba(18,8,11,.40);
+      color: rgba(217,197,166,.8);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    main{
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(18,8,11,.78), rgba(75,15,24,.30));
+      box-shadow: 0 14px 48px var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* subtle floral watermark option */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40px -40px auto auto;
+      width: 220px;
+      height: 220px;
+      background-image: url("assets/bg-flower.jpg"); /* swap to your flower image */
+      background-size: cover;
+      background-position: center;
+      opacity: .10;
+      transform: rotate(-8deg);
+      filter: contrast(1.1) saturate(.95);
+      pointer-events:none;
+      border-radius: 24px;
+    }
+
+    .card-inner{
+      padding: 16px 16px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .topline{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .trackno{
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(217,197,166,.65);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(18,8,11,.45);
+    }
+
+    .titleblock h2{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      color: var(--parchment);
+    }
+    .artist{
+      margin: 6px 0 0;
+      color: rgba(217,197,166,.78);
+      font-size: 14px;
+    }
+
+    .why{
+      margin: 0;
+      line-height: 1.65;
+      color: rgba(217,197,166,.88);
+      font-size: 15px;
+    }
+
+    blockquote{
+      margin: 0;
+      padding: 10px 12px;
+      border-left: 3px solid rgba(162,58,72,.95);
+      background: rgba(162,58,72,.10);
+      border-radius: 14px;
+      color: rgba(217,197,166,.90);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(18,8,11,.35);
+      color: rgba(217,197,166,.75);
+    }
+
+    .embed{
+      border-top: 1px solid var(--border);
+      background: rgba(18,8,11,.35);
+      padding: 12px 12px 14px;
+    }
+    iframe{
+      width: 100%;
+      height: 152px;
+      border: 0;
+      border-radius: 16px;
+    }
+
+    footer{
+      margin-top: 22px;
+      text-align:center;
+      color: rgba(217,197,166,.65);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tiny{
+      display:block;
+      margin-top: 8px;
+      opacity: .9;
+    }
+    .link{
+      color: rgba(217,197,166,.85);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(217,197,166,.55);
+    }
+    .link:hover{ opacity:.9; }
+  </style>
+</head>
+
+<body>
+  <div class="bg-image" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="poster-strip" aria-hidden="true"></div>
+      <div class="head-inner">
+        <span class="kicker">liner notes</span>
+        <h1>27 Songs I Picked For You</h1>
+        <p class="sub">
+          Each track is here on purpose. Some are feelings I couldn’t text, some are memories with the volume turned up.
+          Play in order if you can.
+        </p>
+        <div class="meta-row">
+          <span class="chip">aesthetic: burgundy / sepia / halftone</span>
+          <span class="chip">best played: night drive / headphones</span>
+          <span class="chip">warning: might cause smiling</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="tracks"></main>
+
+    <footer>
+      If you’re reading this, yes—I overthought it. (On purpose.)
+      <span class="tiny">Made to pair with the Spotify playlist description link.</span>
+    </footer>
+  </div>
+
+  <script>
+    // ====== EDIT THESE 27 ITEMS ======
+    // For Spotify embeds: use https://open.spotify.com/embed/track/TRACK_ID
+    // If you don’t want embeds yet, leave embed: "" and it won’t show.
+    const songs = [
+      { title: "Song Title 1", artist: "Artist 1", why: "Why I chose this one...", quote: "A quote I love...", tags: ["late-night", "warm", "vinyl"], embed: "" },
+      { title: "Song Title 2", artist: "Artist 2", why: "Why I chose this one...", quote: "A quote I love...", tags: ["rose & smoke", "soft"], embed: "" },
+      { title: "Song Title 3", artist: "Artist 3", why: "Why I chose this one...", quote: "A quote I love...", tags: ["guitar", "slow burn"], embed: "" },
+
+      // --- duplicate until you have 27 ---
+      { title: "Song Title 4", artist: "Artist 4", why: "Why I chose this one...", quote: "A quote I love...", tags: ["heart", "honey"], embed: "" },
+      { title: "Song Title 5", artist: "Artist 5", why: "Why I chose this one...", quote: "A quote I love...", tags: ["stormy", "tender"], embed: "" },
+      { title: "Song Title 6", artist: "Artist 6", why: "Why I chose this one...", quote: "A quote I love...", tags: ["sepia", "cinematic"], embed: "" },
+      { title: "Song Title 7", artist: "Artist 7", why: "Why I chose this one...", quote: "A quote I love...", tags: ["old soul"], embed: "" },
+      { title: "Song Title 8", artist: "Artist 8", why: "Why I chose this one...", quote: "A quote I love...", tags: ["dance a little"], embed: "" },
+      { title: "Song Title 9", artist: "Artist 9", why: "Why I chose this one...", quote: "A quote I love...", tags: ["midnight"], embed: "" },
+      { title: "Song Title 10", artist: "Artist 10", why: "Why I chose this one...", quote: "A quote I love...", tags: ["roses"], embed: "" },
+      { title: "Song Title 11", artist: "Artist 11", why: "Why I chose this one...", quote: "A quote I love...", tags: ["quiet"], embed: "" },
+      { title: "Song Title 12", artist: "Artist 12", why: "Why I chose this one...", quote: "A quote I love...", tags: ["slow"], embed: "" },
+      { title: "Song Title 13", artist: "Artist 13", why: "Why I chose this one...", quote: "A quote I love...", tags: ["heartstring"], embed: "" },
+      { title: "Song Title 14", artist: "Artist 14", why: "Why I chose this one...", quote: "A quote I love...", tags: ["sunset"], embed: "" },
+      { title: "Song Title 15", artist: "Artist 15", why: "Why I chose this one...", quote: "A quote I love...", tags: ["glow"], embed: "" },
+      { title: "Song Title 16", artist: "Artist 16", why: "Why I chose this one...", quote: "A quote I love...", tags: ["edge"], embed: "" },
+      { title: "Song Title 17", artist: "Artist 17", why: "Why I chose this one...", quote: "A quote I love...", tags: ["grit"], embed: "" },
+      { title: "Song Title 18", artist: "Artist 18", why: "Why I chose this one...", quote: "A quote I love...", tags: ["velvet"], embed: "" },
+      { title: "Song Title 19", artist: "Artist 19", why: "Why I chose this one...", quote: "A quote I love...", tags: ["soft rock"], embed: "" },
+      { title: "Song Title 20", artist: "Artist 20", why: "Why I chose this one...", quote: "A quote I love...", tags: ["dream"], embed: "" },
+      { title: "Song Title 21", artist: "Artist 21", why: "Why I chose this one...", quote: "A quote I love...", tags: ["starlight"], embed: "" },
+      { title: "Song Title 22", artist: "Artist 22", why: "Why I chose this one...", quote: "A quote I love...", tags: ["truth"], embed: "" },
+      { title: "Song Title 23", artist: "Artist 23", why: "Why I chose this one...", quote: "A quote I love...", tags: ["sweet"], embed: "" },
+      { title: "Song Title 24", artist: "Artist 24", why: "Why I chose this one...", quote: "A quote I love...", tags: ["rainy"], embed: "" },
+      { title: "Song Title 25", artist: "Artist 25", why: "Why I chose this one...", quote: "A quote I love...", tags: ["confession"], embed: "" },
+      { title: "Song Title 26", artist: "Artist 26", why: "Why I chose this one...", quote: "A quote I love...", tags: ["lace"], embed: "" },
+      { title: "Song Title 27", artist: "Artist 27", why: "Why I chose this one...", quote: "A quote I love...", tags: ["final scene"], embed: "" },
+    ];
+
+    const el = document.getElementById("tracks");
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    el.innerHTML = songs.map((s, idx) => {
+      const tags = (s.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+      const quote = s.quote?.trim() ? `<blockquote>“${escapeHtml(s.quote)}”</blockquote>` : "";
+      const embed = s.embed?.trim()
+        ? `<div class="embed"><iframe loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" src="${escapeHtml(s.embed)}"></iframe></div>`
+        : "";
+
+      return `
+        <section class="card">
+          <div class="card-inner">
+            <div class="topline">
+              <span class="trackno">Track ${idx + 1}</span>
+              <div class="titleblock">
+                <h2>${escapeHtml(s.title)} <span style="opacity:.8">—</span> ${escapeHtml(s.artist)}</h2>
+                <p class="artist"> </p>
+              </div>
+            </div>
+
+            <p class="why"><strong>Why I picked it:</strong> ${escapeHtml(s.why)}</p>
+            ${quote}
+            <div class="tags">${tags}</div>
+          </div>
+          ${embed}
+        </section>
+      `;
+    }).join("");
+  </script>
+</body>
+</html>
 
