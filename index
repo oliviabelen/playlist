@@ -47,7 +47,7 @@
       position: fixed;
       inset: 0;
       z-index: -4;
-      background-image: url("assets/bg-swirls.jpg"); /* swap to your swirly image */
+      background-image: url("assets/spiral.jpg"); /* swap to your swirly image */
       background-size: cover;
       background-position: center;
       filter: saturate(0.95) contrast(1.05) brightness(0.68);
@@ -94,7 +94,7 @@
     /* Header “poster strip” */
     .poster-strip{
       height: 92px;
-      background-image: url("assets/bg-guitar.jpg"); /* swap to your guitar image */
+      background-image: url("assets/bass.jpg"); /* swap to your guitar image */
       background-size: cover;
       background-position: center;
       filter: contrast(1.1) brightness(.75) saturate(.95);
@@ -171,7 +171,7 @@
       inset:-40px -40px auto auto;
       width: 220px;
       height: 220px;
-      background-image: url("assets/bg-flower.jpg"); /* swap to your flower image */
+      background-image: url("assets/flower.jpg"); /* swap to your flower image */
       background-size: cover;
       background-position: center;
       opacity: .10;
